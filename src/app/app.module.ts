@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -24,7 +24,9 @@ import { GithubCornerComponent } from './github-corner/github-corner.component';
     AngularFireFunctionsModule,
     AngularFirestoreModule,
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
