@@ -1,6 +1,7 @@
 {
   "name": "cat-art-ai",
   "version": "0.0.0",
+  "repository": "https://github.com/ShiJbey/cat-art.ai",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

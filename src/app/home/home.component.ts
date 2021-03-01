@@ -24,7 +24,7 @@ interface UpdateScoresRequest {
 })
 export class HomeComponent implements OnInit {
 
-  public loading = false;
+  public loading = true;
   public imageA: ImageEntry;
   public imageB: ImageEntry;
 
