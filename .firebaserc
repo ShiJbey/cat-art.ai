@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cat-art-ai": {
+      "hosting": {
+        "CatArtAI": [
+          "cat-art-ai"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cat-art-ai"
+  }
+}

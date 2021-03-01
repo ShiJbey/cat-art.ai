@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div>
+      <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Cat Art .AI</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<app-github-corner [url]="'https://github.com/ShiJbey/cat-art.ai'"></app-github-corner>
+<main class="container">
+  <div class="container my-3">
+    <h1 class="w-100" style="text-align: center;">Which image is better?</h1>
+    <div class="row" style="height: 450px; position: relative;">
+      <div *ngIf="loading" class="w-100 h-100" style="display: grid; place-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.815);">
+        <h2 class="text-white">Loading...</h2>
+      </div>
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow">
+        <img *ngIf="!loading" class="art-img" [src]="imageA.url" (click)="handleChoice(imageA)">
+      </div>
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow">
+        <img *ngIf="!loading" class="art-img" [src]="imageB.url" (click)="handleChoice(imageA)">
+      </div>
+    </div>
+  </div>
+  <div class="container my-5">
+    <h1 class="w-100" style="text-align: center;">Rate your own art!</h1>
+    <h3 class="w-100" style="text-align: center;">Coming soon!</h3>
+    <!-- <p>
+      Upload a cat art image below and out machine learning
+      model will estimate the awesomeness of your image!
+    </p>
+
+    <div class="mb-3 cover-photo-form">
+        <label for="blog-cover-photo" class="btn btn-secondary">Upload Cat Art Image</label>
+        <input id="blog-cover-photo" type="file" accept=".png, .jpg, .jpeg" aria-label="Blog post cover photo">
+        <div class="cover-photo-preview">
+            <img src="" alt="">
+        </div>
+    </div> -->
+
+  </div>
+</main>
