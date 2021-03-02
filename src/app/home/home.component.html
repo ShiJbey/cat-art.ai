@@ -31,10 +31,10 @@
       <div *ngIf="imagesLoaded$ | async" class="w-100 h-100" style="display: grid; place-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.815);">
         <h2 class="text-white">Loading...</h2>
       </div>
-      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow">
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
         <img *ngIf="imageA" class="art-img" [src]="imageA.url" (click)="handleChoice(imageA)" (load)="onImageLoaded('A')">
       </div>
-      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow">
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
         <img *ngIf="imageB" class="art-img" [src]="imageB.url" (click)="handleChoice(imageB)" (load)="onImageLoaded('B')">
       </div>
     </div>
@@ -57,7 +57,7 @@
       </div> -->
     </div>
 
-    <div class="m-3 p-3 rounded shadow bg-light">
+    <div class="m-3 p-3 rounded shadow-lg bg-light">
       <h1 id="about">About this project</h1>
       <p>
         The project was completed as the third and final project in the Winter 2021 CMPM202: Computational Media Research class at UC Santa Cruz. The goal was to create a computational artifact that appreciates art. Please rate the images above and try out our art rater when available.
