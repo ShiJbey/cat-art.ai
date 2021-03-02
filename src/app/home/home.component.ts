@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     }
 
   public ngOnInit(): void {
-    this.title.setTitle('Cat At AI - Rate cat art with machine learning');
+    this.title.setTitle('CatArt.AI - Rate the awesomeness of cat art with machine learning');
     this.getImagePair();
   }
 
