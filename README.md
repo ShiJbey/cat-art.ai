@@ -1,4 +1,18 @@
-# CatArtAI
+# Cat Art AI
+
+Team members:
+
+- Samantha Conde
+- Sabrina Fielder
+- Shi Johnson-Bey
+
+Rate the *awesomeness* artistic interpretations of cats and have your own art rated.
+
+We build a trained a convolutional neural network to predict the *awesomeness* of cat art. We do this by crowd sourcing binary ratings of cat art.
+
+View the online [demo](https://cat-art-ai.web.app). Feel free to rate photos and try your own!
+
+# Build the code
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 

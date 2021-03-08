@@ -29,13 +29,13 @@
 
     <div class="row" style="height: 450px; position: relative;">
       <div *ngIf="imagesLoaded$ | async" class="w-100 h-100" style="display: grid; place-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.815);">
-        <h2 class="text-white">Loading...</h2>
+        <h2 class="text-white">Loading next image pair...</h2>
       </div>
       <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
-        <img *ngIf="imageA" class="art-img" [src]="imageA.url" (click)="handleChoice(imageA)" (load)="onImageLoaded('A')">
+        <img *ngIf="imageA" class="art-img" [src]="imageA.url" (click)="onImageClick(imageA)" (load)="onImageLoaded('A')">
       </div>
       <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
-        <img *ngIf="imageB" class="art-img" [src]="imageB.url" (click)="handleChoice(imageB)" (load)="onImageLoaded('B')">
+        <img *ngIf="imageB" class="art-img" [src]="imageB.url" (click)="onImageClick(imageB)" (load)="onImageLoaded('B')">
       </div>
     </div>
   </div>

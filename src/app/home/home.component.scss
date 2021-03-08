@@ -10,9 +10,11 @@
     max-height: 400px;
   }
 
-  .art-img:hover {
-    cursor: pointer;
-    opacity: 0.3;
+  @media (hover: hover) and (pointer: fine) {
+    .art-img:hover {
+      cursor: pointer;
+      opacity: 0.3;
+    }
   }
 }
 

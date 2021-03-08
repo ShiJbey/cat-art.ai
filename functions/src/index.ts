@@ -13,34 +13,13 @@ interface ImageEntry {
 
 interface ImagePairResponse {
   status: "ok" | "error";
-  pair?: [string, string];
+  images?: [ImageEntry, ImageEntry];
   errorMessage?: string;
 }
 
 interface UpdateScoresRequest {
   images: [ImageEntry, ImageEntry];
   winner: 0 | 1;
-}
-
-function getRandomIndices(
-    arraySize: number,
-    replacement: boolean = false
-): [number, number] {
-  const indexA = _.random(arraySize);
-  let indexB = _.random(arraySize);
-
-  if (!replacement && (indexA === indexB)) {
-    const maxAttempts = 10;
-    const attemptcount = 0;
-    while (attemptcount < maxAttempts) {
-      indexB = _.random(arraySize);
-      if (indexA !== indexB) {
-        break;
-      }
-    }
-  }
-
-  return [indexA, indexB];
 }
 
 function expectedScore(ratingA: number, ratingB: number): number {
@@ -63,13 +42,23 @@ export const getImagePair = functions.https.onCall(
       // METHOD A: Choose a random document from storage and
       // retrieve it and an immediate neighbor from the database
       try {
+        const firestore = admin.firestore();
         const bucket = admin.storage().bucket("gs://cat-art-ai.appspot.com");
         const [files] = await bucket.getFiles({prefix: "samples"});
-        const [indexA, indexB] = getRandomIndices(files.length, false);
+        const [indexA, indexB] = _.sampleSize(_.range(files.length), 2);
         functions.logger.log(indexA, indexB);
+
+        const imagePromises = [
+          firestore.doc(files[indexA].name.split(".")[0]).get(),
+          firestore.doc(files[indexB].name.split(".")[0]).get(),
+        ];
+
+        const [imageA, imageB] = (await Promise.all(imagePromises))
+            .map((x) => x.data() as ImageEntry);
+
         return {
           status: "ok",
-          pair: [files[indexA].name, files[indexB].name],
+          images: [imageA, imageB],
         };
       } catch (err) {
         return {

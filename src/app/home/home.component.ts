@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { switchMap, map, tap } from 'rxjs/operators';
+import { switchMap, map, tap, take, throttleTime } from 'rxjs/operators';
 import { ImageEntry } from 'src/app/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { of, combineLatest, BehaviorSubject, Observable, Subject } from 'rxjs';
 
 interface ImagePairResponse {
   status: 'ok' | 'error';
-  pair?: [string, string];
+  images?: [ImageEntry, ImageEntry];
   errorMessage?: string;
 }
 
@@ -24,12 +24,16 @@ interface UpdateScoresRequest {
 })
 export class HomeComponent implements OnInit {
 
+
+
   public imagesLoaded$: Observable<boolean>;
   public imageA: ImageEntry;
   public imageB: ImageEntry;
 
   private imageLoadedA: BehaviorSubject<boolean>;
   private imageLoadedB: BehaviorSubject<boolean>;
+  private clickDebounce: Subject<ImageEntry>;
+
 
   constructor(
     private title: Title,
@@ -43,6 +47,13 @@ export class HomeComponent implements OnInit {
       ]).pipe(
         map(([loadedA, loadedB]) => !(loadedA && loadedB)),
       );
+
+      this.clickDebounce = new Subject<ImageEntry>();
+      this.clickDebounce.asObservable().pipe(
+        throttleTime(500)
+      ).subscribe((choice) => {
+        this.handleChoice(choice);
+      });
     }
 
   public ngOnInit(): void {
@@ -58,7 +69,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  public onImageClick(entry: ImageEntry): void {
+    this.clickDebounce.next(entry);
+  }
+
   public handleChoice(entry: ImageEntry): void {
+    console.log('Image clicked');
     this.resetLoading();
     const updateScores = this.functions.httpsCallable('updateScores');
     const req: UpdateScoresRequest = {
@@ -74,17 +90,11 @@ export class HomeComponent implements OnInit {
     this.resetLoading();
     const getImageNames = this.functions.httpsCallable('getImagePair');
     getImageNames({}).pipe(
-      switchMap((resp: ImagePairResponse) => {
+      map((resp: ImagePairResponse) => {
         if (resp && resp.status === 'ok') {
-          // remove the extenstion from the images
-          const [docA, docB] = resp.pair.map(val => val.split('.')[0]);
-
-          return combineLatest([
-            this.firestore.doc<ImageEntry>(docA).valueChanges(),
-            this.firestore.doc<ImageEntry>(docB).valueChanges()
-          ]);
+          return resp.images;
         }
-        return of(null);
+        return null;
       })
     ).subscribe((val) => {
       if (val) {
