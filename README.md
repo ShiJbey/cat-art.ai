@@ -12,6 +12,10 @@ We build a trained a convolutional neural network to predict the *awesomeness* o
 
 View the online [demo](https://cat-art-ai.web.app). Feel free to rate photos and try your own!
 
+# Training the model
+
+We used a [Google Colab Notebook](https://colab.research.google.com/drive/1GBwxqWsHv6UZadnJ3Rr3avp79-g90GAL?usp=sharing) to train a Tensorflow model. The model is trained in python and converted for Javascript use.
+
 # Build the code
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.

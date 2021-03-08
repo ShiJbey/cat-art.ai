@@ -39,23 +39,32 @@
       </div>
     </div>
   </div>
+
   <div class="container">
-    <div class="py-3">
-      <h1 class="w-100" style="text-align: center;">Rate your own art!</h1>
-      <h3 class="w-100" style="text-align: center;">Coming soon!</h3>
-      <!-- <p>
+    <hr>
+
+    <div class="py-3 text-center w-100">
+      <h1 class="w-100 text-center">Rate your own art!</h1>
+      <p>
         Upload a cat art image below and out machine learning
         model will estimate the awesomeness of your image!
       </p>
 
-      <div class="mb-3 cover-photo-form">
-          <label for="blog-cover-photo" class="btn btn-secondary">Upload Cat Art Image</label>
-          <input id="blog-cover-photo" type="file" accept=".png, .jpg, .jpeg" aria-label="Blog post cover photo">
-          <div class="cover-photo-preview">
-              <img src="" alt="">
+      <div class="mb-3 cover-photo-form m-auto">
+          <label for="blog-cover-photo" class="btn btn-secondary">Upload Cat Art Image!</label>
+          <input id="blog-cover-photo" type="file" accept=".png, .jpg, .jpeg" aria-label="Blog post cover photo" (change)="onImageUpload($event)">
+          <mat-spinner *ngIf="loading" class="my-2 m-auto"></mat-spinner>
+          <div *ngIf="uploadedImageURL" class="cover-photo-preview">
+              <img #uploadPreview [src]="uploadedImageURL" alt="uploaded image" (load)="scoreImage()">
           </div>
-      </div> -->
+      </div>
+
+      <div *ngIf="uploadedImageURL" class="m-auto bg-secondary bg-gradient shadow rounded-3" style="width: 50%;">
+        <p class="fs-2"><strong>Awesomeness Score: </strong><span [ngClass]="getScoreColor()">{{(awesomenessScore * 100).toFixed(2)}} %</span></p>
+      </div>
     </div>
+
+    <hr>
 
     <div class="m-3 p-3 rounded shadow-lg bg-light">
       <h1 id="about">About this project</h1>

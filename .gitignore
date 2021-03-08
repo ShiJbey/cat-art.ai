@@ -48,3 +48,5 @@ Thumbs.db
 
 # Credentials
 src/environments/firebase-config.ts
+
+.firebase

@@ -6,6 +6,9 @@ import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +26,8 @@ import { GithubCornerComponent } from './github-corner/github-corner.component';
     AngularFireAnalyticsModule,
     AngularFireFunctionsModule,
     AngularFirestoreModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ScreenTrackingService
