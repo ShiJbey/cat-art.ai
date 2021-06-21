@@ -10,7 +10,7 @@ Rate the *awesomeness* artistic interpretations of cats and have your own art ra
 
 We build a trained a convolutional neural network to predict the *awesomeness* of cat art. We do this by crowd sourcing binary ratings of cat art.
 
-View the online [demo](https://cat-art-ai.web.app). Feel free to rate photos and try your own!
+View the online [demo](https://cat-art-duel.web.app). Feel free to rate photos and try your own!
 
 # Training the model
 

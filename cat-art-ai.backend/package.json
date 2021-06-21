@@ -1,0 +1,28 @@
+{
+  "name": "cat-art-duel",
+  "version": "1.0.0",
+  "description": "Rate cat art photos using machine learning and crowd-sourced rankings",
+  "dependencies": {
+    "@google-cloud/storage": "^5.8.0",
+    "commander": "^7.1.0",
+    "firebase": "^8.2.9",
+    "firebase-admin": "^9.5.0",
+    "firebase-functions": "^3.13.2",
+    "fs-extra": "^9.1.0",
+    "progress": "^2.0.3",
+    "sharp": "^0.27.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.7",
+    "@types/node": "^14.14.31",
+    "@types/progress": "^2.0.3",
+    "@types/sharp": "^0.27.1"
+  },
+  "scripts": {
+    "start": "node ./build/index.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

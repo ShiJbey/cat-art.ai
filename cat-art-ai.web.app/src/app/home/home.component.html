@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div>
+      <!-- <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <a class="navbar-brand" href="#">Cat Art .AI</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<app-github-corner [url]="'https://github.com/ShiJbey/cat-art.ai'"></app-github-corner>
+<main class="container">
+  <div class="container my-3">
+    <div class="w-100" style="text-align: center;">
+      <h1>Which cat art is better?</h1>
+      <p>Help us train our model. *Click* the piece of art you like best!</p>
+    </div>
+
+    <div class="row" style="height: 450px; position: relative;">
+      <div *ngIf="imagesLoaded$ | async" class="w-100 h-100" style="display: grid; place-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.815);">
+        <h2 class="text-white">Loading next image pair...</h2>
+      </div>
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
+        <img *ngIf="imageA" class="art-img" [src]="imageA.url" (click)="onImageClick(imageA)" (load)="onImageLoaded('A')">
+      </div>
+      <div class="col p-2 mx-1 bg-dark art-img-container rounded shadow-lg">
+        <img *ngIf="imageB" class="art-img" [src]="imageB.url" (click)="onImageClick(imageB)" (load)="onImageLoaded('B')">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <hr>
+
+    <div class="py-3 text-center w-100">
+      <h1 class="w-100 text-center">Rate your own art!</h1>
+      <p>
+        Upload a cat art image below and out machine learning
+        model will estimate the awesomeness of your image!
+      </p>
+
+      <div class="mb-3 cover-photo-form m-auto">
+          <label for="blog-cover-photo" class="btn btn-secondary">Upload Cat Art Image!</label>
+          <input id="blog-cover-photo" type="file" accept=".png, .jpg, .jpeg" aria-label="Blog post cover photo" (change)="onImageUpload($event)">
+          <mat-spinner *ngIf="loading" class="my-2 m-auto"></mat-spinner>
+          <div *ngIf="uploadedImageURL" class="cover-photo-preview">
+              <img #uploadPreview [src]="uploadedImageURL" alt="uploaded image" (load)="scoreImage()">
+          </div>
+      </div>
+
+      <div *ngIf="uploadedImageURL" class="m-auto bg-secondary bg-gradient shadow rounded-3" style="width: 50%;">
+        <p class="fs-2"><strong>Awesomeness Score: </strong><span [ngClass]="getScoreColor()">{{(awesomenessScore * 100).toFixed(2)}} %</span></p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="m-3 p-3 rounded shadow-lg bg-light">
+      <h1 id="about">About this project</h1>
+      <p>
+        The project was completed as the third and final project in the Winter 2021 CMPM202: Computational Media Research class at UC Santa Cruz. The goal was to create a computational artifact that appreciates art. Please rate the images above and try out our art rater when available.
+      </p>
+
+      <h2>What are the rankings for?</h2>
+      <p>
+        We use the rankings of images to train a deep learning model to rate the awesomeness of pictures of cat art (art that contain depictions of cats).
+      </p>
+
+      <h2 id="disclaimer">Disclaimer</h2>
+      <p>
+        The authors of this project do not own the images presented on this site. All credit goes to the original creators. Images were sampled online using various methods.
+      </p>
+    </div>
+  </div>
+</main>
